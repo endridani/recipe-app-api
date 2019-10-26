@@ -1,0 +1,25 @@
+# docker-composer is a tool that allows us to easily run our Docker image
+# It manages the different services that make up our project
+
+# First line is the version of docker-compose we use
+version: "3"
+
+# Next define the services that make up our application
+# app: We are going to have a service called 'app'
+# build: The build section sets context to . which is our current directory
+# ports: Map the project from port 8000 in our host to port 8000 in our Docker image
+# volumes: Allows us to get the changes we make from our project locally to our Docker image in real time without restarting it
+# command: The commands you are going to run supposedly in your cmd, to start the application
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+
+
+# On your cmd run 'docker-compose build' to build our Docker image using this configuration
