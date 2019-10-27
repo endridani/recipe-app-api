@@ -1,0 +1,16 @@
+# The commands and configurations that will be run every time we push our code to Github
+
+# Let travis know what language we are using. When we push to Git, Travis is gonna start a python3.6 server
+language: python
+python:
+  - "3.6"
+
+# The services we need to use. In our case all services are under the Docker file
+services:
+  - docker
+
+# A script that will be executed before the automation commands we will put next
+before_script: pip install docker-compose
+
+script:
+  - docker-compose run app sh -c "python manage.py test && flake8"
