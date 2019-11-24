@@ -10,6 +10,7 @@
 # Optional name of the maintainer
 FROM python:3.7-alpine
 MAINTAINER Endri Dani
+
 # Set environment variable. This variable runs Python in unbuffered mode which is recommended for Docker
 ENV PYTHONUNBUFFERED 1
 
@@ -18,6 +19,7 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 # Run the command to install requirements in Docker image
 RUN pip install -r /requirements.txt
+
 
 # Create a directory in the Docker image which will be used to store our source code
 RUN mkdir /app
